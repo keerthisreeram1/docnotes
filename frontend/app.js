@@ -1,5 +1,4 @@
-const API = "";
-
+const API = "http://ec2-3-138-105-216.us-east-2.compute.amazonaws.com:5000";
 // ── Load all notes when page opens ──
 window.onload = loadNotes;
 
