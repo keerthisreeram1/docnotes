@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DocNotes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>📄 DocNotes</h1>
+    <p>Upload a complex document and write a quick summary to organize all your important files in one place!</p>
+  </header>
+
+  <main>
+
+    <!-- LEFT: Upload + Notes Form -->
+    <section class="form-panel">
+      <h2>New Note</h2>
+
+      <label>Title</label>
+      <input type="text" id="title" placeholder="e.g. Chapter 1 Notes" />
+
+      <label>Upload Document (PDF or image)</label>
+      <input type="file" id="fileInput" accept=".pdf,image/*" />
+
+      <label>Your Notes</label>
+      <textarea id="noteText" placeholder="Write your notes here..."></textarea>
+
+      <button onclick="saveNote()">💾 Save Note</button>
+    </section>
+
+    <!-- RIGHT: Saved Notes List -->
+    <section class="notes-panel">
+      <h2>Saved Notes</h2>
+      <div id="notesList"></div>
+    </section>
+
+  </main>
+
+  <!-- Modal: View a note + its document -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">✕</button>
+      <div class="modal-body">
+        <div class="modal-left">
+          <h3 id="modalTitle"></h3>
+          <p id="modalNote"></p>
+        </div>
+        <div class="modal-right">
+          <iframe id="modalFile" src="" title="Document Preview"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
