@@ -9,7 +9,7 @@ import base64
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)  # Allow frontend to communicate with backend
+CORS(app, origins="*", supports_credentials=True)
 
 # Connect to MongoDB
 client = MongoClient(os.getenv("MONGO_URI"))
