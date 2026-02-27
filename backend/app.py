@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from pymongo import MongoClient
 from dotenv import load_dotenv
@@ -21,7 +22,11 @@ notes_collection = db["notes"]   # collection (like a table) name
 # Health check — visit this to confirm the server is running
 @app.route("/")
 def home():
-    return jsonify({"message": "DocNotes API is running!"})
+    return send_from_directory("../frontend", "index.html")
+
+@app.route("/<path:filename>")
+def static_files(filename):
+    return send_from_directory("../frontend", filename)
 
 
 # CREATE — Save a new note + document
