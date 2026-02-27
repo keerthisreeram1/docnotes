@@ -5,6 +5,8 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
 import base64
+import certifi
+
 
 # Load environment variables from .env file
 load_dotenv()
@@ -13,7 +15,7 @@ app = Flask(__name__)
 CORS(app, origins="*", supports_credentials=True)
 
 # Connect to MongoDB
-client = MongoClient(os.getenv("MONGO_URI"), tls=True, tlsAllowInvalidCertificates=True)
+client = MongoClient(os.getenv("MONGO_URI"), tlsCAFile=certifi.where())
 db = client["docnotes"]          # database name
 notes_collection = db["notes"]   # collection (like a table) name
 
