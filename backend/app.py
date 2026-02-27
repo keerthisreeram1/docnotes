@@ -13,7 +13,7 @@ app = Flask(__name__)
 CORS(app, origins="*", supports_credentials=True)
 
 # Connect to MongoDB
-client = MongoClient(os.getenv("MONGO_URI"))
+client = MongoClient(os.getenv("MONGO_URI"), tls=True, tlsAllowInvalidCertificates=True)
 db = client["docnotes"]          # database name
 notes_collection = db["notes"]   # collection (like a table) name
 
