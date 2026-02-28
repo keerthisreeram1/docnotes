@@ -27,3 +27,5 @@ jobs:
             sleep 2
             cd /home/ubuntu/docnotes/backend
             nohup /usr/bin/python3 app.py > nohup.out 2>&1 &
+            sleep 2
+            exit 0
