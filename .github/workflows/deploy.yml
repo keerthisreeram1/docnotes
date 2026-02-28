@@ -10,19 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Download your code onto the GitHub Actions runner
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: SSH into EC2 and deploy
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
           script: |
-            cd ~/docnotes
+            cd /home/ubuntu/docnotes
             git pull origin master
             pkill -f app.py || true
-            nohup python3 backend/app.py &
+            sleep 2
+            cd /home/ubuntu/docnotes/backend
+            nohup /usr/bin/python3 app.py > nohup.out 2>&1 &
